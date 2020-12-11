@@ -139,6 +139,10 @@ trait CacheableEloquent
      */
     public function getCacheLifetime(): int
     {
+        if (!config('core.enable_cache')) {
+            return 0;
+        }
+
         return $this->cacheLifetime ?? -1;
     }
 
@@ -173,6 +177,10 @@ trait CacheableEloquent
      */
     public function isCacheClearEnabled(): bool
     {
+        if (!config('core.enable_cache')) {
+            return false;
+        }
+
         return $this->cacheClearEnabled ?? true;
     }
 
